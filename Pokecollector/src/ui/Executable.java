@@ -1,12 +1,14 @@
 package ui;
 
 import java.util.Scanner;
-import model.PokemonCard;
+import model.Controller;
+
 
 public class Executable{
 
     private static Scanner input;
-    private static PokemonCard[] collection;
+    private static Controller ctrl;
+
     public static void main(String[] args) {
         
         initializer();
@@ -16,7 +18,7 @@ public class Executable{
     public static void initializer(){
 
         input = new Scanner(System.in);
-        collection = new PokemonCard[200];
+        ctrl = new Controller();
 
     }
 
@@ -36,42 +38,20 @@ public class Executable{
         System.out.println("Digite el poder de ataque");
         int aP = input.nextInt();
 
-        PokemonCard newPoke = new PokemonCard(name, hp, type, aP);
-
-        if(savePokemonCard(newPoke)){
+        if(ctrl.savePokemonCard(name, hp, type, aP)){
             System.out.println("Carta registrada exitosamente");
         }else{
             System.out.println("Colección llena");
         }
     }
 
-    public static boolean savePokemonCard(PokemonCard newCard){
+    
 
-        for (int i = 0; i < collection.length; i++) {
-            
-            if(collection[i]==null){
-                collection[i]=newCard;
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public static String getCollection(){
-        String list="";
-        for (int i = 0; i < collection.length; i++) {
-            if(collection[i]!=null){
-                list+=(i+1)+"|"+collection[i].getName(); //collection[i] es un objeto pokemoncard
-
-            }
-        }
-        return list;
-    }
+    
 
     public static void menu(){
         registerPokemonCard();
-        System.out.println(getCollection());
+        System.out.println(ctrl.getCollection());
         
     }
 }
