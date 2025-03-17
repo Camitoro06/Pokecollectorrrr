@@ -6,8 +6,14 @@ public class Controller {
 
     public Controller(){
         collection = new PokemonCard[200];
+        testData();
     }
 
+    public void testData(){
+        savePokemonCard("Pikachu", 70, 4, 50);
+        savePokemonCard("Charizard", 120, 2, 70);
+
+    }
     /**
      * Descripción: 
      * pre: El arreglo debe estar inicializado
@@ -19,9 +25,32 @@ public class Controller {
      * @return boolean true si se añade, false si no
      */
 
-    public boolean savePokemonCard(String name, int hP, String pokemonType, int attackPower){
+    public boolean savePokemonCard(String name, int hP, int pokemonType, int attackPower){
 
-        PokemonCard newCard = new PokemonCard(name , hP, pokemonType, attackPower);
+        PokemonType temp = PokemonType.AGUA;
+
+        switch (pokemonType) {
+            case 1:
+                temp = PokemonType.AGUA;
+                break;
+            
+            case 2:
+                temp = PokemonType.FUEGO;
+                break;
+            
+            case 3:
+                temp = PokemonType.PLANTA;
+                break;
+            
+            case 4:
+                temp = PokemonType.ELECTRICO;
+                break;
+        
+            default:
+                temp = PokemonType.AGUA;
+                break;
+        }
+        PokemonCard newCard = new PokemonCard(name , hP, temp, attackPower);
 
         for (int i = 0; i < collection.length; i++) {
             
@@ -34,6 +63,21 @@ public class Controller {
         return false;
     }
 
+    public String getPokemonTypeList(){
+        
+        String msg = "Los tipos registrados son: ";
+
+        PokemonType[] types = PokemonType.values();
+
+        for (int i = 0; i < types.length; i++) {
+            
+            msg+=(i+1)+"-->"+types[i];
+        }
+
+        return msg;
+
+    }
+
     /**
      * Despcripción:
      * pre: El arreglo collection debe estar inicializado
@@ -44,10 +88,8 @@ public class Controller {
         String list="";
         for (int i = 0; i < collection.length; i++) {
             if(collection[i]!=null){
-                list+=(i+1)+"|"+collection[i].getName(); //collection[i] es un objeto pokemoncard
+                list+="|"+(i+1)+"|"+collection[i].getName()+"\n"; //collection[i] es un objeto pokemoncard
 
-            }else{
-                System.out.println("gay jaja");
             }
         }
         return list;

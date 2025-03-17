@@ -4,10 +4,10 @@ public class PokemonCard {
 
     private String name;
     private int hP;
-    private String pokemonType;
+    private PokemonType pokemonType;
     private int attackPower;
 
-    public PokemonCard(String name, int hP, String pokemonType, int attackPower){
+    public PokemonCard(String name, int hP, PokemonType pokemonType, int attackPower){
         this.name=name;
         this.hP=hP;
         this.pokemonType=pokemonType;
@@ -31,11 +31,11 @@ public class PokemonCard {
         this.hP=hP;
     }
 
-    public String getPokemonType(){
+    public PokemonType getPokemonType(){
         return pokemonType;
     }
 
-    public void setPokemonType(String pokemonType){
+    public void setPokemonType(PokemonType pokemonType){
         this.pokemonType=pokemonType;
     }
 
@@ -46,4 +46,8 @@ public class PokemonCard {
     public void setAttackPower(int attackPower){
         this.attackPower=attackPower;
     }
+
+    
 }   
+
+
